@@ -4,10 +4,13 @@ import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
 import br.com.caelum.leilao.service.Avaliador;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TesteAvaliador {
 
-  public static void main(String[] args) {
+  @Test
+  public void deveEntenderLancesEmOrdemCrescente() {
     // cenário
     Usuario joao = new Usuario("João");
     Usuario jose = new Usuario("José");
@@ -23,7 +26,11 @@ public class TesteAvaliador {
     leiloeiro.avalia(leilao);
 
     // retorno do método/validação
-    System.out.println(leiloeiro.getMaiorDeTodos() + "\n" + leiloeiro.getMenorDeTodos());
+    double maiorEsperado = 400;
+    double menorEsperado = 250;
+
+    Assert.assertEquals(maiorEsperado, leiloeiro.getMaiorDeTodos(), 0.00001);
+    Assert.assertEquals(menorEsperado, leiloeiro.getMenorDeTodos(), 0.00001);
   }
 
 }
